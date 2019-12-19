@@ -30,8 +30,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE_CLASSES = [
-    'middleware.HealthCheckMiddleware',
-    'middleware.InstanaMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -41,6 +39,12 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if os.getenv('START') is not None:
+    MIDDLEWARE_CLASSES = [
+        'middleware.HealthCheckMiddleware',
+        'middleware.InstanaMiddleware'
+    ] + MIDDLEWARE_CLASSES
 
 ROOT_URLCONF = 'project.urls'
 
