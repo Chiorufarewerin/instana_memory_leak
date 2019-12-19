@@ -10,6 +10,8 @@ def example_view(request: HttpRequest):
     data = {
         'datetime': str(datetime.datetime.now()),
         'path': request.path,
+        'objects': len(gc.get_objects()),
+        'custom_middleware': settings.USE_CUSTOM,
     }
     return JsonResponse(data)
 
@@ -20,5 +22,12 @@ def middlewares_view(request: HttpRequest):
 
 def garbage_output_view(request: HttpRequest):
     c = Counter(type(o) for o in gc.get_objects() if 'instana' in str(type(o)).lower())
-    data = {str(i): j for i, j in c.most_common(None)}
+    instana_objects = {str(i): j for i, j in c.most_common(None)}
+    gc.collect()
+    data = {
+        'custom_middleware': settings.USE_CUSTOM,
+        'is_enabled': gc.isenabled(),
+        'all': len(gc.get_objects()),
+        'objects': instana_objects,
+    }
     return JsonResponse(data, safe=False)

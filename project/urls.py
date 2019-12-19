@@ -1,5 +1,4 @@
 from django.conf.urls import url
-from django.contrib import admin
 from example.views import example_view, garbage_output_view, middlewares_view
 
 urlpatterns = [

@@ -40,7 +40,9 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if os.getenv('START'):
+USE_CUSTOM = bool(os.getenv('START')) or True
+
+if USE_CUSTOM:
     MIDDLEWARE_CLASSES = [
         'middleware.HealthCheckMiddleware',
         'middleware.InstanaMiddleware'
