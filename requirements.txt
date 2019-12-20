@@ -1,3 +1,4 @@
 django==1.9.13
 instana==1.15.6
 cherrypy==18.5.0
+requests

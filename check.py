@@ -6,9 +6,12 @@ import time
 @asyncio.coroutine
 def main():
     loop = asyncio.get_event_loop()
-    for i in range(10000):
-        loop.run_in_executor(None, requests.get, f'http://0.0.0.0:8000/{i}')
-    time.sleep(10)
+    i = 0
+    while True:
+        loop.run_in_executor(None, requests.get, f'http://web-leaked:8000/{i}')
+        time.sleep(0.1)
+        print(f'query {i}')
+        i += 1
 
 
 loop = asyncio.get_event_loop()
