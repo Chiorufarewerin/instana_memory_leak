@@ -1,5 +1,5 @@
 import os
-import instana
+import instana  # noqa: F401
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -15,7 +15,11 @@ SECRET_KEY = '&#u5+3zz49wdsowd4xt9fkc4n(c_z7+1$870k2j9r7u_e)ts%%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    '0.0.0.0',
+]
 
 
 # Application definition
