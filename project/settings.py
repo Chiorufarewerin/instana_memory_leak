@@ -1,6 +1,6 @@
 import os
 import instana  # noqa: F401
-
+from distutils.util import strtobool
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,7 +44,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-USE_CUSTOM = bool(os.getenv('START')) or True
+USE_CUSTOM = bool(strtobool(os.getenv('LEAK')))
 
 if USE_CUSTOM:
     MIDDLEWARE_CLASSES = [

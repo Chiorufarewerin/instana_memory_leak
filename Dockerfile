@@ -4,4 +4,6 @@ RUN mkdir /code
 WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
+# Need to 1 if you want leak memory
+ENV LEAK 1
 COPY . /code/

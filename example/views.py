@@ -7,6 +7,9 @@ from django.http import JsonResponse, HttpRequest
 from django.conf import settings
 
 
+check = None
+
+
 def example_view(request: HttpRequest):
     data = {
         'datetime': str(datetime.datetime.now()),
@@ -39,9 +42,8 @@ def trace_start(request: HttpRequest):
     return JsonResponse({}, safe=False)
 
 
-check = None
 def trace(request: HttpRequest):
-    # gc.collect()
+    gc.collect()
     global check
     snapshot = tracemalloc.take_snapshot()
     tracemalloc.get_tracemalloc_memory()
@@ -73,5 +75,5 @@ def trace(request: HttpRequest):
     return JsonResponse(dict(mem1=mem1, mem2=mem2, top=top, objects=objects, data=data), safe=False)
 
 
-tracemalloc.start()
-gc.disable()
+# tracemalloc.start()
+# gc.disable()
