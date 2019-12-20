@@ -3,3 +3,4 @@
 env
 Dockerfile
 docker-compose.yml
+instana

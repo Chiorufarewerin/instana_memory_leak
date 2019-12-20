@@ -21,9 +21,9 @@ def middlewares_view(request: HttpRequest):
 
 
 def garbage_output_view(request: HttpRequest):
+    gc.collect()
     c = Counter(type(o) for o in gc.get_objects() if 'instana' in str(type(o)).lower())
     instana_objects = {str(i): j for i, j in c.most_common(None)}
-    gc.collect()
     data = {
         'custom_middleware': settings.USE_CUSTOM,
         'is_enabled': gc.isenabled(),

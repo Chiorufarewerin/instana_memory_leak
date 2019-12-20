@@ -1,2 +1,2 @@
 django==1.9.13
-instana==1.17.2
+instana==1.15.6
